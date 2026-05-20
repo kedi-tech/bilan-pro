@@ -38,7 +38,12 @@ const steps = [
   },
 ];
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string }>;
+}) {
+  const { email } = await searchParams;
   return (
     <div className="flex flex-col min-h-screen">
       {/* ── Header ── */}
@@ -143,7 +148,7 @@ export default function Home() {
                 ))}
               </ul>
 
-              <BuyButton />
+              <BuyButton email={email} />
             </div>
           </div>
         </section>

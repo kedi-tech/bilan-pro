@@ -5,7 +5,7 @@ import { useState } from 'react';
 const PAYMENT_WEBHOOK = 'https://n8n.kedi-tech.com/webhook/86eaa4fd-b41b-470c-a00d-199b5dc10a9b';
 const PAYMENT_TOKEN = process.env.NEXT_PUBLIC_PAYMENT_TOKEN ?? 'eyJhbGciOiJIUzI1NiJ9.e30.WZd0CghF6oAM6FDUQly6WoZRa6G0XxgWBNQP-MEPUA1';
 
-export default function BuyButton() {
+export default function BuyButton({ email }: { email?: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -20,7 +20,7 @@ export default function BuyButton() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${PAYMENT_TOKEN}`,
         },
-        body: JSON.stringify({ amount: 250000, user_id: 'web' }),
+        body: JSON.stringify({ amount: 250000, user_id: email ?? '' }),
       });
 
       const data = await res.json();
