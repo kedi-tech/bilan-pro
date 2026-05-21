@@ -20,7 +20,7 @@ export default function BuyButton({ email }: { email?: string }) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${PAYMENT_TOKEN}`,
         },
-        body: JSON.stringify({ amount: 1000, user_id: email ?? '' }),
+        body: JSON.stringify({ amount: 250000, user_id: email ?? '' }),
       });
 
       const data = await res.json();
